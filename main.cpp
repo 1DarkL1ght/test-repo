@@ -38,7 +38,29 @@ TEST(CandleTest, body_contains_test_3){
   EXPECT_FALSE(candle.body_contains(price));
 }
 
-int main(int argc, char** argv){
+TEST(CandleTest, contains_test1){
+  double open = 34.1, high = 36.9, close = 33.8, low = 28.4;
+  Candle candle(open, high, low, close);
+  double price = 35;
+  EXPECT_TRUE(candle.contains(price));
+}
 
+TEST(CandleTest, contains_test2){
+  double open = 34.1, high = 36.9, close = 33.8, low = 28.4;
+  Candle candle(open, high, low, close);
+  double price = 37;
+  EXPECT_FALSE(candle.contains(price));
+}
+
+TEST(CandleTest, contains_test3){
+  double open = 34.1, high = 36.9, close = 33.8, low = 28.4;
+  Candle candle(open, high, low, close);
+  double price = 28.3;
+  EXPECT_FALSE(candle.contains(price));
+}
+
+int main(int argc, char** argv){
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
   return 0;
 }
