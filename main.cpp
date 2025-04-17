@@ -77,6 +77,26 @@ TEST(CandleTest, fullsize_test3){
   EXPECT_TRUE(candle.full_size() == high - low);
 }
 
+TEST(CandleTest, body_size_test1){
+  double open = 34.1, high = 34.1, close = 28.4, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.body_size() == open - close);
+}
+
+TEST(CandleTest, body_size_test2){
+  double open = 34.1, high = 36.9, close = 34.1, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.body_size() == 0);
+}
+
+TEST(CandleTest, body_size_test3){
+  double open = 34.1, high = 38.9, close = 35.8, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.body_size() == close - open);
+}
+
+
+
 int main(int argc, char** argv){
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
