@@ -95,6 +95,24 @@ TEST(CandleTest, body_size_test3){
   EXPECT_TRUE(candle.body_size() == close - open);
 }
 
+TEST(CandleTest, is_red_test1){
+  double open = 34.1, high = 38.9, close = 35.8, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.is_red() == false);
+}
+
+TEST(CandleTest, is_red_test2){
+  double open = 34.1, high = 38.9, close = 33.8, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.is_red() == true);
+}
+
+TEST(CandleTest, is_red_test3){
+  double open = 34.1, high = 34.1, close = 28.4, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.is_red() == true);
+}
+
 
 
 int main(int argc, char** argv){
