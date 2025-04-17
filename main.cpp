@@ -113,7 +113,23 @@ TEST(CandleTest, is_red_test3){
   EXPECT_TRUE(candle.is_red() == true);
 }
 
+TEST(CandleTest, is_green_test1){
+  double open = 34.1, high = 38.9, close = 35.8, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.is_green() == true);
+}
 
+TEST(CandleTest, is_green_test2){
+  double open = 34.1, high = 38.9, close = 33.8, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.is_green() == false);
+}
+
+TEST(CandleTest, is_green_test3){
+  double open = 34.1, high = 34.1, close = 28.4, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.is_green() == false);
+}
 
 int main(int argc, char** argv){
   ::testing::InitGoogleTest(&argc, argv);
