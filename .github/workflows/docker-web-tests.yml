@@ -21,7 +21,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker images
-        uses: docker/build-push-action@v4
         run: |
             docker push ${{ secrets.DOCKER_USERNAME }}/testrepo_app:latest
             docker push ${{ secrets.DOCKER_PASSWORD }}/testrepo_web:latest
