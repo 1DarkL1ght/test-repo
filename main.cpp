@@ -67,6 +67,7 @@ int launchTests()
 
 int main()
 {
+  std::cout << "Running tests...\n";
   initTests();
   return launchTests();
 }
