@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: testrepo_app
+    networks:
+      - testrepo-network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: testrepo_web
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    networks:
+      - testrepo-network
+
+networks:
+  testrepo-network:
