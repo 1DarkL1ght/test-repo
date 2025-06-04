@@ -25,10 +25,10 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-            docker build -t ${{ secrets.DOCKER_USERNAME }}/testrepo_app:${{ steps.vars.outputs.git_sha }} -f Dockerfile.app .
-            docker build -t ${{ secrets.DOCKER_USERNAME }}/testrepo_web:${{ steps.vars.outputs.git_sha }} -f Dockerfile.web .
-            docker push ${{ secrets.DOCKER_USERNAME }}/testrepo_app:${{ steps.vars.outputs.git_sha }}
-            docker push ${{ secrets.DOCKER_USERNAME }}/testrepo_web:${{ steps.vars.outputs.git_sha }}
+            docker build -t ${{ secrets.DOCKER_USERNAME }}/testrepo_app:${{ github.sha }} -f Dockerfile.app .
+            docker build -t ${{ secrets.DOCKER_USERNAME }}/testrepo_web:${{ github.sha }} -f Dockerfile.web .
+            docker push ${{ secrets.DOCKER_USERNAME }}/testrepo_app:${{ github.sha }}
+            docker push ${{ secrets.DOCKER_USERNAME }}/testrepo_web:${{ github.sha }}
 
       - name: Helm setup
         uses: azure/setup-helm@v3
