@@ -131,14 +131,14 @@ TEST(CandleTest, is_green_test3){
   EXPECT_TRUE(candle.is_green() == false);
 }
 
-// TEST(CandleTest, constructor_test1){
-//   double open = 34.1, high = 38.9, close = 35.8, low = 28.4;
-//   Candle candle(open, high, low, close);
-//   EXPECT_TRUE(candle.open == open);
-//   EXPECT_TRUE(candle.high == high);
-//   EXPECT_TRUE(candle.low == low);
-//   EXPECT_TRUE(candle.close == close);
-// }
+TEST(CandleTest, constructor_test1){
+  double open = 34.1, high = 38.9, close = 35.8, low = 28.4;
+  Candle candle(open, high, low, close);
+  EXPECT_TRUE(candle.open == open);
+  EXPECT_TRUE(candle.high == high);
+  EXPECT_TRUE(candle.low == low);
+  EXPECT_TRUE(candle.close == close);
+}
 
 int main(int argc, char** argv){
   std::cout << "Running tests..." << std::endl;
