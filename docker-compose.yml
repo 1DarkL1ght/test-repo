@@ -1,19 +1,19 @@
 services:
   app:
+    image: 1darkl1ght/testrepo_app:latest
     build:
       context: .
       dockerfile: Dockerfile.app
-    container_name: testrepo_app
+    container_name: test-app
     networks:
       - testrepo-network
 
   web:
+    image: 1darkl1ght/testrepo_web:latest
     build:
       context: .
       dockerfile: Dockerfile.web
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    container_name: testrepo_web
+    container_name: test-web
     depends_on:
       - app
     ports:
