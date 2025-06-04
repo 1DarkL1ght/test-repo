@@ -12,4 +12,4 @@ RUN mkdir -p build && cd build \
     && cmake .. \
     && make
 
-CMD ["/bin/sh", "-c", "/app/build/testproj && tail -f /dev/null"]
+CMD ["/app/build/testproj"]

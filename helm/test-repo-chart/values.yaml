@@ -1,0 +1,30 @@
+# Default values for test-repo-chart.
+replicaCount: 1
+
+app:
+  name: app-deployment
+  image:
+    repository: 1darkl1ght/testrepo_app
+    tag: "latest"
+    pullPolicy: Always
+  selectorLabels:
+    app: test-app
+
+web:
+  name: web-deployment
+  image:
+    repository: 1darkl1ght/testrepo_web
+    tag: "latest"
+    pullPolicy: Always
+  selectorLabels:
+    app: test-web
+
+service:
+  name: webservice
+  type: LoadBalancer
+  port: 80
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "web-service-account"

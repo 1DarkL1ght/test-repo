@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-web
+  template:
+    metadata:
+      labels:
+        app: test-web
+    spec:
+      serviceAccountName: web-service-account
+      containers:
+      - name: test-web
+        image: 1darkl1ght/testrepo_web:latest
+        command: ["/entrypoint.sh"]

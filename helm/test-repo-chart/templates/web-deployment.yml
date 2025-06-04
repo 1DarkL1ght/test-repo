@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.web.name | default "web-deployment" }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- toYaml .Values.web.selectorLabels | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- toYaml .Values.web.selectorLabels | nindent 8 }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name | default "web-service-account" }}
+      containers:
+      - name: test-web
+        image: {{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}
+        imagePullPolicy: {{ .Values.web.image.pullPolicy }}
+        command: ["/entrypoint.sh"]

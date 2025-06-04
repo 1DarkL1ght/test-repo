@@ -1,12 +1,7 @@
-sleep 10
+#!/bin/bash
+until kubectl get pods -l app=test-app --field-selector=status.phase=Running -o name | grep -q "pod/"; do
+    sleep 5
+done
 
-
-APP_CONTAINER=$(docker ps -q -f name=testrepo_app)
-
-if [ -n "$APP_CONTAINER" ]; then
-    docker logs "$APP_CONTAINER" > /usr/share/nginx/html/index.html
-else
-    echo "Error: testrepo_app wasn't found" > /usr/share/nginx/html/index.html
-fi
-
+kubectl logs -l app=test-app --tail=100 > /usr/share/nginx/html/logs.txt
 exec nginx -g 'daemon off;'
